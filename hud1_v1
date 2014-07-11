@@ -1,0 +1,275 @@
+<html>
+<head>
+<script>
+// input from form
+var price = 0.00,
+loan_amount = 0.00;
+
+// CONSTANTS as defined by SPN Title Services
+var doc_prep_fee = 300.00,          // static doc prep fee
+purchase_settlement_fee = 695.00,   // static new purchase settlement fee
+refi_settlement_fee = 595.00,       // static refi settlement fee
+title_search_fee = 90.00,           // if they can provide title
+new_title_search_fee = 190.00,      // if we do title search
+closing_protection_letter = 75.00,  // ICL fee to commonwealth
+survey_fee = 300.00,                // if survey
+delawareCountyTax = .015,           // county tax amount
+delawareStateTax = .015,            // state tax amount
+deedFeeEstimate = 58.00;            // fee to process deed (increases by page)
+ifLoanInvolved = 250.00;            // if loan involved, add to deed fee estimate
+titleInsuranceRate = .0462,         // ATLA homeowners policy
+standardTitleInsuranceRate = .0385; // ALTA standard coverage
+
+// dynamic numbers on HUD-1
+var borrower1101 = 0.00, seller1101 = 0.00, sec1101 = 0.00,
+borrower1103 = 0.00, seller1103 = 0.00, 
+borrower1111 = 0.00, seller1111 = 0.00,
+borrower1201 = 0.00, seller1201 = 0.00,
+countyTaxAmount = 0.00, stateTaxAmount = 0.00,
+borrower1203 = 0.00, seller1203 = 0.00,
+borrower1302 = 0.00, seller1302 = 0.00,
+borrowerTotal = 0.00, sellerTotal = 0.00;
+
+
+// displays data as money
+function dm(amount) 
+{
+	string = "" + amount;
+	dec = string.length - string.indexOf('.');
+	if (string.indexOf('.') == -1)
+	return string + '.00';
+	if (dec == 1)
+	return string + '00';
+	if (dec == 2)
+	return string + '0';
+	if (dec > 3)
+	return string.substring(0,string.length-dec+3);
+	return string;
+}
+
+//sets numbers in form
+function setHUD1_numbers()
+{
+	document.hud1.borrower_1101.value = dm(eval(borrower1101));
+	document.hud1.seller_1101.value = dm(eval(seller1101));
+	
+	// add settlement fee, title search fee
+	
+	document.hud1.borrower_1103.value = dm(eval(borrower1103));
+	document.hud1.seller_1103.value = dm(eval(seller1103));
+	
+	document.hud1.borrower_1111.value = dm(eval(borrower1111));
+	document.hud1.seller_1111.value = dm(eval(seller1111));
+	
+	document.hud1.borrower_1201.value = dm(eval(borrower1201));
+	document.hud1.seller_1201.value = dm(eval(seller1201));
+	
+	document.hud1.county_tax_amount = dm(eval(countyTaxAmount));
+	document.hud1.state_tax_amount = dm(eval(stateTaxAmount));
+	
+	document.hud1.borrower_1203.value = dm(eval(borrower1203));
+	document.hud1.seller_1203.value = dm(eval(seller1203));
+	
+	document.hud1.borrower_1302.value = dm(eval(borrower1302));
+	document.hud1.seller_1302.value = dm(eval(seller1302));
+	
+	document.hud1.seller_total.value = dm(eval(sellerTotal));
+	document.hud1.borrower_total.value = dm(eval(borrowerTotal));
+}
+
+// main
+function calculate()
+{
+	// checks if anything entered, sets variables
+	if(document.theForm.purchasePrice.value > "")
+	{
+		price = document.theForm.purchasePrice.value;
+	}
+	
+	if(document.theForm.loanAmount.value > "" )
+	{
+		loan_amount = document.theForm.loanAmount.value;
+	}
+	
+	
+	var isLoanAmountZero = isNaN(loan_amount); //returns false if acceptable number
+	
+	// settlement fee
+	borrower1101 = settlement_fee + title_search_fee;
+	seller1101 = 0.00;
+	
+	borrower1103 = price * .0462;
+	seller1103 = 0.00;
+	
+	borrower1111 = 0.00;
+	seller1111 = doc_prep_fee;
+	
+	if (isLoanAmountZero) 
+	{
+		borrower1201 = deedFeeEstimate; 
+		document.theForm.loanAmount.value = 0;
+	}
+	else {borrower1201 = deedFeeEstimate + ifLoanInvolved;}
+	seller1201 = 0.00;
+	
+	countyTaxAmount = price * sussexCountyTax;
+	stateTaxAmount = price * delawareStateTax;
+	
+	borrower1203 = countyTaxAmount + stateTaxAmount;
+	seller1203 = 0.00;
+	
+	borrower1302 = survey_fee;
+	seller1302 = 0.00;
+	
+	borrowerTotal = borrower1101 + +borrower1103 + borrower1111 + 
+					borrower1201 + borrower1203 + borrower1302;
+	sellerTotal = seller1101 + seller1103 + seller1111 +
+					seller1201 + seller1203 + seller1302;
+	
+	
+	// write data to page
+	setHUD1_numbers();
+		
+}
+
+</script>
+</head>
+<body>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+</style>
+
+<form name="theForm" id="theForm">
+<table cellspacing="10">
+<tr>
+<td>
+Preferred Closing Date:</td> 
+<td><input type="date" name="date"></td>
+</tr>
+<tr>
+<td>
+County:</td><td> <select>
+<option value="New Castle">New Castle</option>
+<option value="Kent">Kent</option>
+<option value="Sussex">Sussex</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+Purchase or Refinance: </td><td>
+<input type="radio" name="radio" value="New Purchase">New Purchase<br>
+<input type="radio" name="radio" value="Refinance">Refinance<br>
+</td>
+</tr>
+<tr>
+<td>
+Can you provide title?: </td><td>
+<input type="radio" name="radio" value="yes_provide_title">Yes<br>
+<input type="radio" name="radio" value="no_provide_title">No / I'm not sure<br>
+</td>
+</tr>
+<tr>
+<td>
+Do you require a survey? </td><td>
+<input type="radio" name="radio" value="New Purchase">Yes<br>
+<input type="radio" name="radio" value="Refinance">No / I'm not sure<br>
+</td>
+</tr>
+<tr>
+<td>
+Purchase Price: </td>
+<td><input type="text" name="purchasePrice"></td></tr>
+<tr><td>
+Loan Amount (if any): </td>
+<td><input type="text" name="loanAmount"></td>
+</tr>
+<tr>
+<td>
+<button type="button" value="Calculate" onclick="calculate();">Calculate</button>
+</td>
+<td>
+<button type="reset" value="Reset">Reset</button>
+</td>
+</tr>
+</table>
+</form>
+<br><br><br>
+
+
+<form name="hud1" id="hud1">
+<table class="tg" align="center">
+  <tr>
+    <th class="tg-031e" colspan="4"><b>Estimate of Closing Cost Fees</b></th>
+  </tr>
+  <tr>
+    <td class="tg-031e" align="center">HUD-1 Line</td>
+    <td class="tg-031e" align="center">Description</td>
+    <td class="tg-031e" align="center">Borrower</td>
+    <td class="tg-031e" align="center">Seller</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="4"><b>1100. Title Charges</b></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1101</td>
+    <td class="tg-031e">Tile Services and Lender's Title Insurance<br>&nbsp; &nbsp; &nbsp;Settlement Fee: $695.00<br>&nbsp; &nbsp; &nbsp;Title Search: $190.00</td>
+    <td class="tg-031e">$<input type="text" name="borrower_1101" id="borrower_1101"></td>
+    <td class="tg-031e">$<input type="text" name="seller_1101" id="seller_1101"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1103</td>
+    <td class="tg-031e">Owners Title Insurance</td>
+    <td class="tg-031e">$<input type="text" name="borrower_1103" id="borrower_1103"></td>
+    <td class="tg-031e">$<input type="text" name="seller_1103" id="seller_1103"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1111</td>
+    <td class="tg-031e">Document Preparation Fee: $325.00</td>
+    <td class="tg-031e">$<input type="text" name="borrower_1111" id="borrower_1111"></td>
+    <td class="tg-031e">$<input type="text" name="seller_1111" id="seller_1111"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="4"><b>1200. Government Recording and Transfer Charges</b></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1201</td>
+    <td class="tg-031e">Government Recording Charges</td>
+    <td class="tg-031e">$<input type="text" name="borrower_1201" id="borrower_1201"></td>
+    <td class="tg-031e">$<input type="text" name="seller_1201" id="seller_1201"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1203</td>
+    <td class="tg-031e">Transfer Taxes<br>&nbsp; &nbsp; &nbsp;
+	County: $<input type="text" name="county_tax_amount" id="county_tax_amount"><br>&nbsp; &nbsp; &nbsp;
+	State: $<input type="text" id="state_tax_amount" name="state_tax_amount"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1203" id="borrower_1203"></td>
+    <td class="tg-031e">$<input type="text" name="seller_1203" id="seller_1203"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="4"><b>1300. Additional Settlement Charges</b></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1302</td>
+    <td class="tg-031e">Survey (if applicable)</td>
+    <td class="tg-031e">$<input type="text" name="borrower_1302" id="borrower_1302"></td>
+    <td class="tg-031e">$<input type="text" name="seller_1302" id="seller_1302"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1303</td>
+    <td class="tg-031e">HOA Fee (if applicable)</td>
+    <td class="tg-031e">fee varies</td>
+    <td class="tg-031e">fee varies</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="2"><b>1400. Total Settlement Charges</b></td>
+    <td class="tg-031e">$<input type="text" id="borrower_total" name="borrower_total"></td>
+	<td class="tg-031e">$<input type="text" id="seller_total" name="seller_total"></td>
+  </tr>
+</table>
+</form>
+
+</body>
+</html>
