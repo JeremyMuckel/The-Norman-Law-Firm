@@ -1,0 +1,303 @@
+<html>
+<head>
+<script>
+/*
+// input from form
+var price = 0.00,
+loan_amount = 0.00;
+
+var isPurchase = true,
+isRefiance = false,
+canProvideTitle = false,
+isLoanAmountZero = true;
+
+// CONSTANTS as defined by SPN Title Services
+var doc_prep_fee = 300.00,          // static doc prep fee - 1111
+purchase_settlement_fee = 695.00,   // static new purchase settlement fee - 1102
+refi_settlement_fee = 595.00,       // static refinance settlement fee - 1102
+title_search_fee = 90.00,           // if they can provide title - 1110
+new_title_search_fee = 190.00,      // if we do title search - 1110
+ICL_fee = 75.00,  // ICL fee to commonwealth - 1109
+delawareCountyTax = .015,           // county tax amount - 1203
+delawareStateTax = .015,            // state tax amount - 1203
+deedFeeEstimate = 58.00;            // fee to process deed (ESTIMATE) - 1201
+ifLoanInvolved = 250.00;            // if loan involved, add to deed fee estimate - 1201
+titleInsuranceRate = .0462,         // ATLA homeowners policy - 1103
+standardTitleInsuranceRate = .0385; // ALTA standard coverage - 1103
+
+// dynamic numbers on HUD-1
+var borrower1101 = 0.00, seller1101 = 0.00, sec1101 = 0.00,
+borrower1102 = 0.00, seller1102 = 0.00, sec1102 = 0.00,
+borrower1103 = 0.00, seller1103 = 0.00, sec1103 = 0.00,
+borrower1109 = 0.00, seller1109 = 0.00, sec1109 = 0.00,
+borrower1110 = 0.00, seller1110 = 0.00, sec1110 = 0.00,
+borrower1111 = 0.00, seller1111 = 0.00, sec1111 = 0.00,
+borrower1201 = 0.00, seller1201 = 0.00, sec1201 = 0.00,
+countyTaxAmount = 0.00, stateTaxAmount = 0.00,
+borrower1203 = 0.00, seller1203 = 0.00, sec1203 = 0.00,
+borrowerTotal = 0.00, sellerTotal = 0.00;
+
+// displays as money
+function dm(amount) 
+{
+	string = "" + amount;
+	dec = string.length - string.indexOf('.');
+	if (string.indexOf('.') == -1)
+	return string + '.00';
+	if (dec == 1)
+	return string + '00';
+	if (dec == 2)
+	return string + '0';
+	if (dec > 3)
+	return string.substring(0,string.length-dec+3);
+	return string;
+}
+
+//sets numbers in form
+function setHUD1_numbers()
+{
+	document.hud1.borrower_1101.value = dm(eval(borrower1101));
+	document.hud1.seller_1101.value = dm(eval(seller1101));
+	document.hud1.sec_1101.value = dm(eval(sec1101));
+	
+	document.hud1.borrower_1102.value = dm(eval(borrower1102));
+	document.hud1.seller_1102.value = dm(eval(seller1102));
+	document.hud1.sec_1102.value = dm(eval(sec1102));
+	
+	document.hud1.borrower_1103.value = dm(eval(borrower1103));
+	document.hud1.seller_1103.value = dm(eval(seller1103));
+	document.hud1.sec_1103.value = dm(eval(sec1103));
+	
+	document.hud1.borrower_1109.value = dm(eval(borrower1109));
+	document.hud1.seller_1109.value = dm(eval(seller1109));
+	document.hud1.sec_1109.value = dm(eval(sec1109));
+	
+	document.hud1.borrower_1110.value = dm(eval(borrower1110));
+	document.hud1.seller_1110.value = dm(eval(seller1110));
+	document.hud1.sec_1110.value = dm(eval(sec1110));
+	
+	document.hud1.borrower_1111.value = dm(eval(borrower1111));
+	document.hud1.seller_1111.value = dm(eval(seller1111));
+	document.hud1.sec_1111.value = dm(eval(sec1111));
+	
+	document.hud1.borrower_1201.value = dm(eval(borrower1201));
+	document.hud1.seller_1201.value = dm(eval(seller1201));
+	document.hud1.sec_1201.value = dm(eval(sec1201));
+	
+	document.hud1.county_tax_amount = dm(eval(countyTaxAmount));
+	document.hud1.state_tax_amount = dm(eval(stateTaxAmount));
+	document.hud1.borrower_1203.value = dm(eval(borrower1203));
+	document.hud1.seller_1203.value = dm(eval(seller1203));
+	document.hud1.sec_1203.value = dm(eval(sec1203));
+	
+	document.hud1.seller_total.value = dm(eval(sellerTotal));
+	document.hud1.borrower_total.value = dm(eval(borrowerTotal));
+}
+
+// reads input from form and sets appropriate variables
+function read_input_set_variables()
+{
+	if(document.theForm.purchasePrice.value > "")
+	{
+		price = document.theForm.purchasePrice.value;
+	}
+	
+	if(document.theForm.loanAmount.value > "" )
+	{
+		loan_amount = document.theForm.loanAmount.value;
+	}
+	
+	isLoanAmountZero = isNaN(loan_amount); //returns false if acceptable number
+}
+
+// calculates each section total
+function calculate_HUD1_sections()
+{
+	//1101
+	//sec1101 = sec1102 + sec1109 + sec1110;
+	
+	//1102
+	
+	//1103
+	
+	//1109
+	
+	//1110
+	
+	//1111
+	
+	//1201
+	
+	//1203
+	
+	// TOTAL
+	
+	setHUD1_numbers();
+}
+*/
+function whichradio()
+{ 
+	//sec1101 = document.theForm.radio;
+	//sec1102 = document.theForm.radio2;
+	document.write("ASDA");
+	//alert(sec1102);
+}
+
+function calculate()
+(
+	whichradio();
+	
+}
+</script>
+</head>
+<body>
+
+
+<form name="theForm" id="theForm">
+<table cellspacing="10">
+<tr>
+<td>
+Preferred Closing Date:</td> 
+<td><input type="date" name="date"></td>
+</tr>
+<tr>
+<td>
+County:</td><td> <select>
+<option value="New Castle">New Castle</option>
+<option value="Kent">Kent</option>
+<option value="Sussex">Sussex</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+Is this a Purchase or Refinance?: </td><td>
+<input type="radio" name="radio" id="new" value="New Purchase">New Purchase<br>
+<input type="radio" name="radio" id="refi" value="Refinance">Refinance<br>
+</td>
+</tr>
+<tr>
+<td>
+Can you provide a Title?: </td><td>
+<input type="radio" name="radio2" value="yes_provide_title">Yes<br>
+<input type="radio" name="radio2" value="no_provide_title">No<br>
+</td>
+</tr>
+<tr>
+<td>
+Purchase Price: </td>
+<td><input type="text" name="purchasePrice"></td></tr>
+<tr><td>
+Loan Amount (if any): </td>
+<td><input type="text" name="loanAmount"></td>
+</tr>
+<tr>
+<td>
+<button type="button" value="Calculate" onclick="calculate();">Calculate</button>
+</td>
+<td>
+<button type="reset" value="Reset">Reset</button>
+</td>
+</tr>
+</table>
+</form>
+<br><br><br>
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-hjma{background-color:#ffffff}
+.tg .tg-hgcj{font-weight:bold;text-align:center}
+.tg .tg-2sfh{font-weight:bold;background-color:#efefef}
+.tg .tg-bsv2{background-color:#efefef}
+.tg .tg-76tn{background-color:#efefef}
+</style>
+
+
+
+<table class="tg">
+  <tr>
+    <th class="tg-hgcj" colspan="4">Estimate of Closing Cost Fees</th>
+  </tr>
+  <tr>
+    <td align="center" class="tg-031e">HUD-1 Line</td>
+    <td align="center" class="tg-hjma">Description</td>
+    <td align="center" class="tg-031e">Borrower</td>
+    <td align="center" class="tg-hjma">Seller</td>
+  </tr>
+  <tr>
+    <td class="tg-2sfh" colspan="4">1100. Title Charges</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1101</td>
+    <td class="tg-hjma">Total Title Charges:&nbsp;$<input type="text" name="sec_1101" id="sec_1101"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1101" id="borrower_1101"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1101" id="seller_1101"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1102</td>
+    <td class="tg-hjma">Settlement Fee:&nbsp;$<input type="text" name="sec_1102" id="sec_1102"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1102" id="borrower_1102"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1102" id="seller_1102"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1103</td>
+    <td class="tg-hjma">Owners Title Insurance:&nbsp;$<input type="text" name="sec_1103" id="sec_1103"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1103" id="borrower_1103"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1103" id="seller_1103"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1109</td>
+    <td class="tg-hjma">ICL Fee to Commonwealth:&nbsp;$<input type="text" name="sec_1109" id="sec_1109"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1109" id="borrower_1109"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1109" id="seller_1109"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1110</td>
+    <td class="tg-hjma">Title Search/Recording Fee:&nbsp;$<input type="text" name="sec_1110" id="sec_1110"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1110" id="borrower_1110"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1110" id="seller_1110"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1111</td>
+    <td class="tg-hjma">Document Preparation Fee:&nbsp;$<input type="text" name="sec_1111" id="sec_1111"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1111" id="borrower_1111"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1111" id="seller_1111"></td>
+  </tr>
+  <tr>
+    <td class="tg-2sfh" colspan="4">1200. Government Recording &amp; Transfer Charges</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1201</td>
+    <td class="tg-hjma">Government Recording Charges:&nbsp;$<input type="text" name="sec_1201" id="sec_1201"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1201" id="borrower_1201"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1201" id="seller_1201"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1203</td>
+    <td class="tg-hjma">Transfer Taxes:&nbsp;$<input type="text" name="sec_1203" id="sec_1203"><br>&nbsp; &nbsp; &nbsp;
+	County:&nbsp;$<input type="text" name="county_tax_amount" id="county_tax_amount"><br>&nbsp; &nbsp; &nbsp;
+	State:&nbsp;$<input type="text" name="state_tax_amount" id="state_tax_amount"></td>
+    <td class="tg-031e">$<input type="text" name="borrower_1203" id="borrower_1203"></td>
+    <td class="tg-hjma">$<input type="text" name="seller_1203" id="seller_1203"></td>
+  </tr>
+  <tr>
+    <td class="tg-2sfh" colspan="4">1300. Additional Settlement Fees</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">1301</td>
+    <td class="tg-hjma">This section will depend on each individual settlement contract</td>
+    <td align="center" class="tg-031e">varies</td>
+    <td align="center" class="tg-hjma">varies</td>
+  </tr>
+  <tr>
+    <td class="tg-2sfh" colspan="2">1400. Total Settlement Charges</td>
+    <td class="tg-bsv2">$<input type="text" id="borrower_total" name="borrower_total"></td>
+    <td class="tg-76tn">$<input type="text" id="seller_total" name="seller_total"></td>
+  </tr>
+</table>
+
+</body>
+</html>
